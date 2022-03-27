@@ -5,6 +5,7 @@
 //  Created by Juan Diego Ocampo on 27/03/22.
 //
 
+import StoreKit
 import UIKit
 
 final class TableViewController: UITableViewController {
@@ -17,6 +18,7 @@ final class TableViewController: UITableViewController {
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .secondarySystemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(reviewTapped))
         loadImagesFromBundle()
     }
     
@@ -54,6 +56,10 @@ final class TableViewController: UITableViewController {
             vc.totalPictures = pictures.count
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc private func reviewTapped() {
+        SKStoreReviewController.requestReview()
     }
     
 }
